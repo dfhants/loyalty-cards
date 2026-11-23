@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The stack as the widget picker shows it before the app has made its own picture from your
+     cards: drawn by the widget's own code from sample cards (StackPreview). -->
+<ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:importantForAccessibility="no"
+    android:scaleType="fitEnd"
+    android:src="@drawable/widget_preview_stack" />

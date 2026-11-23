@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- One card's tab in the stack. The image is the whole row (it sets the row's height from its
+     shape); the name and number are placed over it with padding. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/row_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/row_art"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:importantForAccessibility="no"
+        android:scaleType="fitXY" />
+
+    <!-- The texts fill the row rather than size it, so a row is always exactly as tall as its
+         picture and rows meet without gaps. -->
+    <TextView
+        android:id="@+id/row_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="top|start"
+        android:ellipsize="end"
+        android:includeFontPadding="false"
+        android:maxLines="1"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/row_number"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom|start"
+        android:includeFontPadding="false"
+        android:visibility="gone" />
+</FrameLayout>

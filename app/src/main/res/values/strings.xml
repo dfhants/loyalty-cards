@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Loyalty Cards</string>
+    <string name="widget_single_name">One card</string>
+    <string name="widget_single_desc">Show one card\'s barcode, ready to scan</string>
+    <string name="wallet_overlap_name">Wallet</string>
+    <string name="wallet_overlap_desc">Your cards stacked like the app. Tap one to show its barcode</string>
+</resources>

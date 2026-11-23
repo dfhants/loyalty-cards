@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Starts at the bottom, where the front card is, as in the app, and goes back there whenever
+         the cards change (or the widget is resized). Where more cards are
+         scrolled out of view, the edge fades softly away rather than cutting a card off, so a
+         clipped card doesn't just look like a smaller one. -->
+    <ListView
+        android:id="@+id/stack_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:requiresFadingEdge="vertical"
+        android:fadingEdgeLength="40dp"
+        android:cacheColorHint="@android:color/transparent"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:listSelector="@android:color/transparent"
+        android:scrollbars="none"
+        android:stackFromBottom="true"
+        android:transcriptMode="alwaysScroll" />
+
+    <TextView
+        android:id="@+id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/widget_empty_bg"
+        android:gravity="center"
+        android:padding="12dp"
+        android:text="Add a card to get started"
+        android:textColor="#FF0F1A5C" />
+</FrameLayout>

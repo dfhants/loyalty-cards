@@ -1,0 +1,30 @@
+<resources>
+    <style name="Theme.LoyaltyCards" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <!-- A card shown over the home screen from a widget: see-through window, the home screen
+         stays visible behind, dimmed. -->
+    <style name="Theme.LoyaltyCards.Overlay" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <!-- The home screen is dimmed by the system's own dim layer, which only fades: the
+             launcher's open-from-widget animation moves the window, not the dimming. -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.62</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/OverlayAnimation</item>
+    </style>
+
+    <style name="OverlayAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/overlay_enter</item>
+        <item name="android:activityOpenExitAnimation">@anim/none</item>
+        <item name="android:activityCloseEnterAnimation">@anim/none</item>
+        <item name="android:activityCloseExitAnimation">@anim/overlay_exit</item>
+        <item name="android:windowEnterAnimation">@anim/overlay_enter</item>
+        <item name="android:windowExitAnimation">@anim/overlay_exit</item>
+    </style>
+</resources>

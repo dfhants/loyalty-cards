@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Only for the build that generates the baseline profile: lets the generator open the widget
+     pop-up directly, as a widget tap would. The release build keeps it private. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <application>
+        <activity
+            android:name=".widget.WidgetCardOverlayActivity"
+            android:exported="true"
+            tools:replace="android:exported" />
+    </application>
+</manifest>
