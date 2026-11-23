@@ -21,6 +21,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.Icon
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.OpenInNew
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -73,7 +80,7 @@ class WidgetCardOverlayActivity : ComponentActivity() {
                     // The card was deleted since the widget last drew it.
                     LaunchedEffect(Unit) { close() }
                 } else {
-                    FloatingCard(card, onDismiss = ::close)
+                    FloatingCard(card, onDismiss = ::close, onOpenApp = { openApp(card.id) })
                 }
             }
         }
@@ -97,6 +104,16 @@ class WidgetCardOverlayActivity : ComponentActivity() {
         CardStore.get(this).markUsed(id)
     }
 
+    /** Opens the app on this card (it lifts out of the wallet there) and puts the pop-up away. */
+    private fun openApp(cardId: String) {
+        startActivity(
+            Intent(this, dev.loyaltycards.MainActivity::class.java)
+                .putExtra(dev.loyaltycards.MainActivity.EXTRA_CARD_ID, cardId)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP),
+        )
+        close()
+    }
+
     private fun close() {
         if (!isFinishing) finishAndRemoveTask()
     }
@@ -116,7 +133,7 @@ class WidgetCardOverlayActivity : ComponentActivity() {
 
 /** The card's barcode side in the middle of the dimmed screen, as in the app. */
 @Composable
-private fun FloatingCard(card: LoyaltyCard, onDismiss: () -> Unit) {
+private fun FloatingCard(card: LoyaltyCard, onDismiss: () -> Unit, onOpenApp: () -> Unit) {
     WhileShowingCard()
     // Putting it away: a quick fade, then close. (Android slides a closing window off the
     // bottom of the screen; by then there's nothing left in it to see.)
@@ -162,6 +179,12 @@ private fun FloatingCard(card: LoyaltyCard, onDismiss: () -> Unit) {
             }
             if (card.note.isNotBlank()) {
                 Text(card.note, style = MaterialTheme.typography.bodyMedium, color = Color.White, textAlign = TextAlign.Center)
+            }
+            // The way into the app from here: to edit the card, see the rest, or add one.
+            FilledTonalButton(onClick = onOpenApp) {
+                Icon(Icons.AutoMirrored.Rounded.OpenInNew, contentDescription = null, modifier = Modifier.size(18.dp))
+                Spacer(Modifier.width(8.dp))
+                Text("Open app")
             }
         }
     }
